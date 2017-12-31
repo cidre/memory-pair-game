@@ -1,0 +1,127 @@
+content {
+
+  position: fixed;
+/*	
+  width: 100%;
+  height: 100vh;
+  
+  height: 80%;	*/
+}
+
+.grid-container {
+  display: grid;
+ /* grid-template-columns: repeat(3, auto); */
+  grid-template-rows: auto;/*repeat(4, 1fr);*/
+  /*grid-gap: 1rem; */  /*10px; */
+  /*background-color: #2196F3; */
+  /* padding: 5px; */
+  align-items: center;
+  justify-content: center;
+  /* 
+  width: 95%;
+  height: 90%;
+   */
+}
+
+@media screen and (orientation: landscape) 
+              and (max-width: 629px) {
+  .grid-container {
+    grid-template-columns: repeat(3, auto);
+    background-color: #1006F3;
+    grid-gap: 10px; /*10px; */
+  }
+}  
+
+@media screen and (orientation: landscape) 
+              and (min-width: 630px)
+              and (max-width: 1049px) {
+  .grid-container {
+    grid-template-columns: repeat(4, auto);
+    background-color: #1006F3;
+    grid-gap: 10px; /*10px; */
+  }
+}  
+
+@media screen and (orientation: landscape)
+ and (min-width: 1050px) {
+  .grid-container {
+    grid-template-columns: repeat(8, auto);
+    background-color: pink;
+    grid-gap: 5px; /*10px; */
+  }
+}
+
+@media screen and (max-width: 989px)
+              and (orientation: portrait) {
+  .grid-container {
+  grid-template-columns: repeat(3, auto);
+  grid-gap: 1rem; /*10px; */
+  background-color: yellow;
+  }
+}
+
+@media screen and (orientation: portrait) 
+              and (min-width: 990px){
+  .grid-container {
+    grid-template-columns: repeat(4, auto);
+    background-color: grey;
+    grid-gap: 8px; /*10px; */
+  }
+}
+.flip-container {
+  background-color: rgba(255, 255, 255, 0.8);
+  /* padding: 2px 0; */
+  perspective: 1000px;
+}
+
+/* flip the pane when hovered */
+/*	.flip-container:hover .flipper, .flip-container.hover .flipper { */
+/*	.flip-container.flipper { */
+   .flip-container.face .flipper { 
+		transform: rotateY(180deg);
+	}
+
+.flip-container, .front, .back {
+	width: 125px;
+	height: 136px;
+}
+
+/* flip speed goes here */
+.flipper {
+	transition: 0.8s;
+	transform-style: preserve-3d;
+
+	position: relative;
+}
+
+/* hide back of pane during swap */
+.front, .back {
+	backface-visibility: hidden;
+
+	position: absolute;
+	top: 0;
+	left: 0;
+
+    border: 1px solid blue;
+    border-radius: 5%;
+
+    background-repeat: no-repeat;
+    background-origin: content-box;
+    background-position: center;
+}
+
+/* front pane, initially hidden pane*/
+.front {
+	/* for firefox 31 */
+	transform: rotateY(180deg);
+}
+
+/* back, placed above front */
+.back {
+	z-index: 2;
+	transform: rotateY(0deg);
+}
+
+.hidden {
+	visibility: hidden;
+}
