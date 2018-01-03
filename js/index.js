@@ -1,5 +1,4 @@
-let game = { rowsNum: 4,
-	         columnsNum: 4,
+let game = { playingCardsNum: 16,
 	         cards: ['bull', 'chick', 'cow', 'dog', 'dragon', 'monkey', 
 	                 'mouse', 'pig', 'rabbit', 'sheep', 'snake', 'tiger'],
 	         playingCards: [],
@@ -8,7 +7,8 @@ let game = { rowsNum: 4,
 	       }
 
 function addCardToQueue(card){
-    game.cardQueue.push(card);	
+    game.cardQueue.push(card);
+    queueProcessing();	
 };
 
 function emulateClickToFlip(cardNum){
@@ -36,23 +36,19 @@ function hidePaire(card1Num, card2Num){
 };
 
 function checkGameOver(){
-	return game.openedPairsNum * 2 === game.rowsNum * game.columnsNum;
+	return game.openedPairsNum * 2 === game.playingCardsNum;
 };
 
 function suggestNewGame(){
 
 } 
 
-function considerQueue(){
-    console.log('considerQueue length before:', game.cardQueue.length);
+function queueProcessing(){
     while (game.cardQueue.length > 1) {
     	if (game.cardQueue[0] === game.cardQueue[1]) {
-    	
     		game.cardQueue.shift();
     	
     	} else if (game.playingCards[game.cardQueue[0]] === game.playingCards[game.cardQueue[1]]) {    		
-    		
-    		console.log('Пара ',game.playingCards[game.cardQueue[0]],' detected!');
     		hidePaire(game.cardQueue[0], game.cardQueue[1]);
     		game.cardQueue.shift();
     		game.cardQueue.shift();
@@ -60,15 +56,13 @@ function considerQueue(){
     		if (checkGameOver()) suggestNewGame();
 
     	} else {
-    		//setTimeout(emulateClickToFlip(game.cardQueue[0]), 800);
-    		//setTimeout(emulateClickToFlip(game.cardQueue[1]), 800);
     		emulateClickToFlip(game.cardQueue[0]);
     		emulateClickToFlip(game.cardQueue[1]);
      		game.cardQueue.shift();
     		game.cardQueue.shift();
+
     	};
     }
-    console.log('considerQueue length after:',game.cardQueue.length);
 };
 
 function shuffle(o) {
@@ -77,10 +71,7 @@ function shuffle(o) {
 };
 
 function handleStart(e){
-//	console.log(this.classList);
-//    this.classList.toggle('hover');
     this.classList.toggle('face');
-  //  return true;
 }
 
 function initializeCards(){
@@ -88,25 +79,17 @@ function initializeCards(){
 	return shuffle(game.cards.concat(game.cards));              
 }
 
-function createGrid(grid, rows, columns){
-
-	//animals.sort(function() { return 0.5 - Math.random() });               
-
+function createGrid(grid, cardsInGridNumber){
     if (!grid) grid = document.createElement('div');
     grid.className = 'grid-container';
     grid.addEventListener('click', function(event){
         if (event.target && event.target.className.substr(0,4) === 'back') {
-            // Event triggered
-            //console.log(event.target.className);
-            //setTimeout(addCardToQueue(event.target.className.substr(9)), 500);
-            addCardToQueue(event.target.className.substr(9));
-            //considerQueue();
-            setTimeout(considerQueue, 1500);
+            // Delay to wait for card flipping
+            setTimeout(addCardToQueue, 1000, event.target.className.substr(9));
         }
-        //console.log(event.path[1].className);
     });
-    for (var i = 0; i < rows * columns; ++i) {
-    	//let cardImg = document.createElement('img');
+
+    for (var i = 0; i < cardsInGridNumber; ++i) {
     	let cardFront = document.createElement('div');
     	cardFront.className = 'front card'.concat(i);
     	cardFront.style.backgroundImage = 'url(images/'.concat(game.playingCards[i]).concat('.png)');
@@ -135,5 +118,5 @@ function createGrid(grid, rows, columns){
 function createInitialSet(){
 	game.playingCards = initializeCards(); //keep globally
 	document.getElementById('playArea')
-        .appendChild(createGrid(null, game.rowsNum, game.columnsNum));
+        .appendChild(createGrid(null, game.playingCardsNum));
 }

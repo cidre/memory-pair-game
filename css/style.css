@@ -27,7 +27,7 @@ content {
               and (max-width: 629px) {
   .grid-container {
     grid-template-columns: repeat(3, auto);
-    background-color: #1006F3;
+    /* background-color: #1006F3; */
     grid-gap: 10px; /*10px; */
   }
 }  
@@ -37,8 +37,8 @@ content {
               and (max-width: 1049px) {
   .grid-container {
     grid-template-columns: repeat(4, auto);
-    background-color: #1006F3;
-    grid-gap: 10px; /*10px; */
+    /* background-color: #1006F3; */
+    grid-gap: 10px; 
   }
 }  
 
@@ -46,8 +46,8 @@ content {
  and (min-width: 1050px) {
   .grid-container {
     grid-template-columns: repeat(8, auto);
-    background-color: pink;
-    grid-gap: 5px; /*10px; */
+    /* background-color: pink; */
+    grid-gap: 10px; /*10px; */
   }
 }
 
@@ -56,7 +56,7 @@ content {
   .grid-container {
   grid-template-columns: repeat(3, auto);
   grid-gap: 1rem; /*10px; */
-  background-color: yellow;
+  /* background-color: yellow; */
   }
 }
 
@@ -64,13 +64,13 @@ content {
               and (min-width: 990px){
   .grid-container {
     grid-template-columns: repeat(4, auto);
-    background-color: grey;
+    /* background-color: grey; */
     grid-gap: 8px; /*10px; */
   }
 }
 .flip-container {
-  background-color: rgba(255, 255, 255, 0.8);
-  /* padding: 2px 0; */
+  background-color: rgba(255, 255, 255, 1);
+  /*padding: 2px 0; */
   perspective: 1000px;
 }
 
@@ -82,13 +82,13 @@ content {
 	}
 
 .flip-container, .front, .back {
-	width: 125px;
-	height: 136px;
+	width: 122px;
+	height: 134px;
 }
 
 /* flip speed goes here */
 .flipper {
-	transition: 0.8s;
+	transition: 1s;
 	transform-style: preserve-3d;
 
 	position: relative;
@@ -102,11 +102,11 @@ content {
 	top: 0;
 	left: 0;
 
-    border: 1px solid blue;
+    border: 2px solid blue;
     border-radius: 5%;
 
     background-repeat: no-repeat;
-    background-origin: content-box;
+    background-origin: border-box; /*content-box;*/
     background-position: center;
 }
 
