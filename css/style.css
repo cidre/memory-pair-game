@@ -1,34 +1,26 @@
 content {
-
   position: fixed;
-/*	
-  width: 100%;
-  height: 100vh;
-  
-  height: 80%;	*/
 }
 
 .grid-container {
   display: grid;
  /* grid-template-columns: repeat(3, auto); */
-  grid-template-rows: auto;/*repeat(4, 1fr);*/
-  /*grid-gap: 1rem; */  /*10px; */
-  /*background-color: #2196F3; */
-  /* padding: 5px; */
+  grid-template-rows: auto;
   align-items: center;
   justify-content: center;
-  /* 
-  width: 95%;
-  height: 90%;
-   */
 }
 
 @media screen and (orientation: landscape) 
               and (max-width: 629px) {
   .grid-container {
     grid-template-columns: repeat(3, auto);
-    /* background-color: #1006F3; */
     grid-gap: 10px; /*10px; */
+  }
+
+  .flip-container, .front, .back {
+	width: 61px;
+	height: 67px;
+	background-size: contain;
   }
 }  
 
@@ -37,8 +29,13 @@ content {
               and (max-width: 1049px) {
   .grid-container {
     grid-template-columns: repeat(4, auto);
-    /* background-color: #1006F3; */
     grid-gap: 10px; 
+  }
+
+  .flip-container, .front, .back {
+	width: 80px;
+	height: 88px;
+	background-size: contain;
   }
 }  
 
@@ -46,8 +43,13 @@ content {
  and (min-width: 1050px) {
   .grid-container {
     grid-template-columns: repeat(8, auto);
-    /* background-color: pink; */
-    grid-gap: 10px; /*10px; */
+    grid-gap: 10px; 
+  }
+
+  .flip-container, .front, .back {
+	width: 122px;
+	height: 134px;
+	/*background-size: contain;*/
   }
 }
 
@@ -58,16 +60,29 @@ content {
   grid-gap: 1rem; /*10px; */
   /* background-color: yellow; */
   }
+
+  .flip-container, .front, .back {
+	width: 61px;
+	height: 67px;
+	background-size: contain;
+  }
 }
 
 @media screen and (orientation: portrait) 
               and (min-width: 990px){
+  /*iPad Pro*/           	
   .grid-container {
     grid-template-columns: repeat(4, auto);
-    /* background-color: grey; */
-    grid-gap: 8px; /*10px; */
+    grid-gap: 8px; 
+  }
+
+  .flip-container, .front, .back {
+	width: 122px;
+	height: 134px;
+	background-size: contain;
   }
 }
+
 .flip-container {
   background-color: rgba(255, 255, 255, 1);
   /*padding: 2px 0; */
@@ -81,10 +96,6 @@ content {
 		transform: rotateY(180deg);
 	}
 
-.flip-container, .front, .back {
-	width: 122px;
-	height: 134px;
-}
 
 /* flip speed goes here */
 .flipper {
