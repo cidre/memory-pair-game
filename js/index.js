@@ -1,10 +1,16 @@
-let game = { playingCardsNum: 16,
+let game = { playingCardsNum: 4,
 	         cards: ['bull', 'chick', 'cow', 'dog', 'dragon', 'monkey', 
 	                 'mouse', 'pig', 'rabbit', 'sheep', 'snake', 'tiger'],
 	         playingCards: [],
 	         cardQueue: [],
-	         openedPairsNum: 0
+	         openedPairsNum: 0,
+	         grid:    null,
+	         modal:   null,
+	         restart: null,
+	         quit:    null,
 	       }
+
+	       
 
 function addCardToQueue(card){
     game.cardQueue.push(card);
@@ -40,7 +46,7 @@ function checkGameOver(){
 };
 
 function suggestNewGame(){
-
+    game.modal.style.display = "block"; 
 } 
 
 function queueProcessing(){
@@ -75,20 +81,11 @@ function handleStart(e){
 }
 
 function initializeCards(){
-	game.cards = shuffle(game.cards).slice(0, 8);
+	game.cards = shuffle(game.cards).slice(0, game.playingCardsNum / 2);
 	return shuffle(game.cards.concat(game.cards));              
 }
 
-function createGrid(grid, cardsInGridNumber){
-    if (!grid) grid = document.createElement('div');
-    grid.className = 'grid-container';
-    grid.addEventListener('click', function(event){
-        if (event.target && event.target.className.substr(0,4) === 'back') {
-            // Delay to wait for card flipping
-            setTimeout(addCardToQueue, 1000, event.target.className.substr(9));
-        }
-    });
-
+function createCards(grid, cardsInGridNumber){
     for (var i = 0; i < cardsInGridNumber; ++i) {
     	let cardFront = document.createElement('div');
     	cardFront.className = 'front card'.concat(i);
@@ -112,11 +109,55 @@ function createGrid(grid, cardsInGridNumber){
     	
     	grid.appendChild(cardContainer);
     }
+}
+
+function removeCards(grid) {
+    while (grid.firstChild) {
+        grid.removeChild(grid.firstChild);
+    }
+}
+
+function createGrid(grid){
+    if (!grid) {
+    	grid = document.createElement('div');
+        grid.className = 'grid-container';
+        grid.addEventListener('click', function(event){
+            if (event.target && event.target.className.substr(0,4) === 'back') {
+                // Delay to wait for card flipping
+                setTimeout(addCardToQueue, 1000, event.target.className.substr(9));
+            }
+        });
+    } else {
+    	removeCards(grid);
+    }
+
+    createCards(grid, game.playingCardsNum);
     return grid;
 }
 
 function createInitialSet(){
 	game.playingCards = initializeCards(); //keep globally
-	document.getElementById('playArea')
-        .appendChild(createGrid(null, game.playingCardsNum));
+	if (!game.grid) { 
+	    // first game
+		game.grid = createGrid(null, game.playingCardsNum);
+	    document.getElementById('playArea').appendChild(game.grid);
+	}
+}
+
+function initializeGame(grid){
+	if (!grid) {
+	    game.modal = document.getElementById('finalModal');
+	    game.quit  = document.getElementsByClassName("close")[0];
+	    game.restart  = document.getElementsByClassName("restart")[0];
+
+	    game.quit.onclick = function() {
+            game.modal.style.display = "none";
+        }
+
+	    game.restart.onclick = function() {
+            game.modal.style.display = "none";
+            createInitialSet();
+        }
+    }
+	createInitialSet(grid);
 }

@@ -12,7 +12,18 @@
       <h1>Memory Pair Game</h1>
       <div id="playArea">
       </div>
-      <script type="text/javascript">createInitialSet();</script>
+
+      <!-- The Modal -->
+      <div id="finalModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+          <h1>You are the Champion!</h1>
+          <button id="restartBtn" class="restart modal-btn">Play again!</button>
+          <button id="quitBtn" class="close modal-btn">Quit</button>
+        </div>
+      </div>
+
+      <script type="text/javascript">initializeGame(null);</script>
     </div>    
   </body>
 </html>

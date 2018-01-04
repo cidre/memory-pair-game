@@ -2,6 +2,10 @@ content {
   position: fixed;
 }
 
+h1 {
+  text-align: center;	 
+}
+
 .grid-container {
   display: grid;
  /* grid-template-columns: repeat(3, auto); */
@@ -113,7 +117,10 @@ content {
 	top: 0;
 	left: 0;
 
-    border: 2px solid blue;
+    border: 2px solid #007FC6;
+    -webkit-border-radius: 5%;  /* Safari */  
+    -moz-border-radius: 5%;     /* Firefox */  
+    -o-border-radius: 5%;       /* Opera */     
     border-radius: 5%;
 
     background-repeat: no-repeat;
@@ -135,4 +142,55 @@ content {
 
 .hidden {
 	visibility: hidden;
+}
+
+/* Background for Modal */
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; /* Enable scroll if needed */
+    background-color: #007FC6; 
+    opacity: 0.4; 
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 2px solid #007FC6;
+    -webkit-border-radius: 10px;  /* Safari */  
+    -moz-border-radius: 10px;     /* Firefox */  
+    -o-border-radius: 10px;       /* Opera */     
+    border-radius: 10px;
+    width: 50%;
+}
+
+/* Buttons */
+
+/*
+.modal-buttons {
+}
+*/
+
+.modal-btn {
+    color: #007FC6;
+    font-size: 22px;
+    font-weight: bold;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+}
+.modal-btn:hover,
+.modal-btn:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
 }
