@@ -8,7 +8,6 @@ h1 {
 
 .grid-container {
   display: grid;
- /* grid-template-columns: repeat(3, auto); */
   grid-template-rows: auto;
   align-items: center;
   justify-content: center;
@@ -17,8 +16,8 @@ h1 {
 @media screen and (orientation: landscape) 
               and (max-width: 629px) {
   .grid-container {
-    grid-template-columns: repeat(3, auto);
-    grid-gap: 10px; /*10px; */
+    grid-template-columns: repeat(4, auto);
+    grid-gap: 10px;
   }
 
   .flip-container, .front, .back {
@@ -53,16 +52,15 @@ h1 {
   .flip-container, .front, .back {
 	width: 122px;
 	height: 134px;
-	/*background-size: contain;*/
+	background-size: contain;
   }
 }
 
-@media screen and (max-width: 989px)
+@media screen and (max-width: 539px)
               and (orientation: portrait) {
   .grid-container {
-  grid-template-columns: repeat(3, auto);
-  grid-gap: 1rem; /*10px; */
-  /* background-color: yellow; */
+  grid-template-columns: repeat(4, auto);
+  grid-gap: 1rem; 
   }
 
   .flip-container, .front, .back {
@@ -73,8 +71,7 @@ h1 {
 }
 
 @media screen and (orientation: portrait) 
-              and (min-width: 990px){
-  /*iPad Pro*/           	
+              and (min-width: 540px){
   .grid-container {
     grid-template-columns: repeat(4, auto);
     grid-gap: 8px; 
@@ -89,13 +86,9 @@ h1 {
 
 .flip-container {
   background-color: rgba(255, 255, 255, 1);
-  /*padding: 2px 0; */
   perspective: 1000px;
 }
 
-/* flip the pane when hovered */
-/*	.flip-container:hover .flipper, .flip-container.hover .flipper { */
-/*	.flip-container.flipper { */
    .flip-container.face .flipper { 
 		transform: rotateY(180deg);
 	}
@@ -125,7 +118,7 @@ h1 {
 
     background-repeat: no-repeat;
     background-origin: border-box; /*content-box;*/
-    background-position: center;
+    background-position: center center;
 }
 
 /* front pane, initially hidden pane*/
@@ -148,7 +141,7 @@ h1 {
 .modal {
     display: none; 
     position: fixed; 
-    z-index: 1; /* Sit on top */
+    z-index: 1;         
     padding-top: 100px; /* Location of the box */
     left: 0;
     top: 0;
@@ -156,8 +149,6 @@ h1 {
     height: 100%; 
     overflow: auto; /* Enable scroll if needed */
     background-color: rgba(0, 127, 198, 0.4); 
-    /*#007FC6;
-    opacity: 0.4;  */
 }
 
 /* Modal Content */
@@ -174,13 +165,6 @@ h1 {
     text-align: center;
 }
 
-/* Buttons */
-
-/*
-.modal-buttons {
-}
-*/
-
 .modal-btn {
     color: #007FC6;
     font-size: 22px;
@@ -191,6 +175,7 @@ h1 {
     margin-bottom: 20px;
     padding: 5px;
 }
+
 .modal-btn:hover,
 .modal-btn:focus {
     color: #000;

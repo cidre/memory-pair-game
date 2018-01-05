@@ -10,8 +10,6 @@ let game = { playingCardsNum: 16,
 	         quit:    null,
 	       }
 
-	       
-
 function addCardToQueue(card){
     game.cardQueue.push(card);
     queueProcessing();	
@@ -76,7 +74,7 @@ function shuffle(o) {
 	return o;
 };
 
-function handleStart(e){
+function handleClick(){
     this.classList.toggle('face');
 }
 
@@ -105,8 +103,7 @@ function createCards(grid){
 
     	let cardContainer = document.createElement('div');
     	cardContainer.className = 'flip-container card'.concat(i);
-    	cardContainer.addEventListener('click',handleStart,false);
-    	//cardContainer.addEventListener('touchstart',handleStart,false);
+    	cardContainer.addEventListener('click',handleClick,false);
     	cardContainer.appendChild(flipper);
     	
     	grid.appendChild(cardContainer);
@@ -135,7 +132,6 @@ function createGrid(){
     });
 
     createCards(grid);
-
     return grid;
 }
 
