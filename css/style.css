@@ -155,8 +155,9 @@ h1 {
     width: 100%; 
     height: 100%; 
     overflow: auto; /* Enable scroll if needed */
-    background-color: #007FC6; 
-    opacity: 0.4; 
+    background-color: rgba(0, 127, 198, 0.4); 
+    /*#007FC6;
+    opacity: 0.4;  */
 }
 
 /* Modal Content */
@@ -170,6 +171,7 @@ h1 {
     -o-border-radius: 10px;       /* Opera */     
     border-radius: 10px;
     width: 50%;
+    text-align: center;
 }
 
 /* Buttons */
@@ -183,10 +185,11 @@ h1 {
     color: #007FC6;
     font-size: 22px;
     font-weight: bold;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+    display: inline-block;
+    margin-left: 20px;
+    margin-right: 20px;
     margin-bottom: 20px;
+    padding: 5px;
 }
 .modal-btn:hover,
 .modal-btn:focus {
